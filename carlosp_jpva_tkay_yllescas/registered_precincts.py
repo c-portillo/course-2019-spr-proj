@@ -13,6 +13,7 @@ class registered_precincts(dml.Algorithm):
 
     @staticmethod
     def execute(trial=False):
+        print("registered_precincts")
         '''Retrieve some data sets (without API).'''
         startTime = datetime.datetime.now()
 

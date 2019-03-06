@@ -14,6 +14,7 @@ class geocodes(dml.Algorithm):
         
     @staticmethod
     def execute(trial = False):
+        print("geocodes")
 
         '''Retrieve some data sets (not using the API here for the sake of simplicity).'''
         startTime = datetime.datetime.now()
@@ -97,7 +98,7 @@ class geocodes(dml.Algorithm):
                   
         return doc
 
-geocodes.execute()
+#geocodes.execute()
 '''
 # This is example code you might use for debugging this module.
 # Please remove all top-level function calls before submitting.

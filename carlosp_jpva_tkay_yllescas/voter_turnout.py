@@ -13,6 +13,7 @@ class voter_turnout(dml.Algorithm):
 
     @staticmethod
     def execute(trial=False):
+        print("voter_turnout")
         '''Retrieve some data sets (without API).'''
         startTime = datetime.datetime.now()
 

@@ -13,6 +13,7 @@ class early_voting(dml.Algorithm):
 
     @staticmethod
     def execute(trial=False):
+        print("earlyvoting")
         '''Retrieve some data sets (without API).'''
         startTime = datetime.datetime.now()
 
