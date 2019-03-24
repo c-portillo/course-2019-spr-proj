@@ -66,4 +66,13 @@ wasGeneratedBy = [(v['prov:entity'], v['prov:activity'], 'wasGeneratedBy') for v
 used = [(v['prov:activity'], v['prov:entity'], 'used') for v in prov_json['used'].values()]
 open('provenance.html', 'w').write(protoql.html("graph(" + str(entities + agents + activities) + ", " + str(wasAssociatedWith + wasAttributedTo + wasDerivedFrom + wasGeneratedBy + used) + ")"))
 
+
+# This is example code you might use for debugging this module.
+# Please remove all top-level function calls before submitting.
+example.execute()
+doc = example.provenance()
+print(doc.get_provn())
+print(json.dumps(json.loads(doc.serialize()), indent=4))
+
+
 ## eof
