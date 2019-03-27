@@ -5,7 +5,7 @@ import prov.model
 import datetime
 import uuid
 
-class registered(dml.Algorithm):
+class eligible_by_ward(dml.Algorithm):
     contributor = 'carlosp_jpva_tkay_yllescas'
     reads = []
     writes = ['carlosp_jpva_tkay_yllescas.eligible_by_ward']
