@@ -1,0 +1,5 @@
+There are many things to do in Boston, but without a comprehensive list of events and eateries it can be overwhelming to find or choose something to do, and even moreso for tourists who do not know how dangerous certain locations can be.
+
+To help with this, we propose to use datasets from AnalyzeBoston with a list of active food establishment licenses and entertaiment licenses, to get a comprehensive list of activities in Boston. Together with data from AirBnb tourists can see where they can go that is near their airbnb, and to see which areas of Boston are safer, we will use the Department of Innovation and Technology's Crime Incident Reports dataset. Incident details and responding police district are included, but information about the neighborhood is not so by matching neighborhoods to incidents using the police district numbers, provided by the same department By matching crimes, we can get an idea of how safe a neighborhood.
+
+With these datasets we hope to help tourists, students, and locals find interesting places to go in Boston, while also staying safe.
