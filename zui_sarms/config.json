@@ -1,0 +1,7 @@
+{
+  "MONGO_USER": "zui",
+  "MONGO_PKEY": "mongo_pkey",
+  "MONGO_HOST": "senpai.zkn.io",
+  "MONGO_DB": "senpai",
+  "MONGO_PORT": 27017
+}
