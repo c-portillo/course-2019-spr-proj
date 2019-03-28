@@ -1,5 +1,5 @@
 # using voter turnouts and demographics by towns, evaluate, agg sum for total population 2010 and 2000, and find out how many are registered and voting, registered and not voting, not registered, etc.
-import urllib.request
+import urllib
 import json
 import dml
 import prov.model
@@ -7,6 +7,7 @@ import datetime
 import uuid
 import sys
 import math
+from urllib import request, parse
 
 class geocodes(dml.Algorithm):
     contributor = 'carlosp_jpva_tkay_yllescas'
