@@ -13,7 +13,7 @@ class registered_and_eligible_aggregation(dml.Algorithm):
 
     @staticmethod
     def execute(trial=False):
-        print("non_poc_early_voting")
+        print("registered_and_eligible_aggregation")
         '''Retrieve some data sets (without API).'''
         startTime = datetime.datetime.now()
 

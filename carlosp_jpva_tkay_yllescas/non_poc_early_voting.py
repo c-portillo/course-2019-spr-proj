@@ -89,17 +89,4 @@ class non_poc_early_voting(dml.Algorithm):
 
         return doc
 
-<<<<<<< HEAD
-=======
-#non_poc_early_voting.execute()
-'''
-# This is example code you might use for debugging this module.
-# Please remove all top-level function calls before submitting.
-example.execute()
-doc = example.provenance()
-print(doc.get_provn())
-print(json.dumps(json.loads(doc.serialize()), indent=4))
-'''
->>>>>>> transformation3
-
 ## eof

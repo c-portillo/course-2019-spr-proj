@@ -13,6 +13,7 @@ class non_registered_cd(dml.Algorithm):
 
     @staticmethod
     def execute(trial=False):
+        print("non_registered_cd")
         '''Retrieve some data sets (without API).'''
         startTime = datetime.datetime.now()
 

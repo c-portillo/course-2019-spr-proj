@@ -94,13 +94,4 @@ class demographics_by_towns(dml.Algorithm):
 #
 #d_t.execute()
 
-'''
-# This is example code you might use for debugging this module.
-# Please remove all top-level function calls before submitting.
-example.execute()
-doc = example.provenance()
-print(doc.get_provn())
-print(json.dumps(json.loads(doc.serialize()), indent=4))
-'''
-
 ## eof
