@@ -6,10 +6,10 @@ import datetime
 import uuid
 
 
-class registered_and_eligible_aggregation(dml.Algorithm):
+class registered_and_eligible_projection_to_ward(dml.Algorithm):
     contributor = 'carlosp_jpva_tkay_yllescas'
     reads = ['carlosp_jpva_tkay_yllescas.registered_precincts', 'carlosp_jpva_tkay_yllescas.non_registered_precincts']
-    writes = ['carlosp_jpva_tkay_yllescas.registered_ward_aggregation', 'carlosp_jpva_tkay_yllescas.eligible_ward_aggregation']
+    writes = ['carlosp_jpva_tkay_yllescas.registered_by_ward', 'carlosp_jpva_tkay_yllescas.eligible_by_ward']
 
     @staticmethod
     def execute(trial=False):
@@ -22,11 +22,11 @@ class registered_and_eligible_aggregation(dml.Algorithm):
         repo = client.repo
         repo.authenticate('carlosp_jpva_tkay_yllescas', 'carlosp_jpva_tkay_yllescas')
 
-        repo.dropCollection("registered_ward_aggregation")
-        repo.createCollection("registered_ward_aggregation")
+        repo.dropCollection("registered_by_ward")
+        repo.createCollection("registered_by_ward")
 
-        repo.dropCollection("eligible_ward_aggregation")
-        repo.createCollection("eligible_ward_aggregation")
+        repo.dropCollection("eligible_by_ward")
+        repo.createCollection("eligible_by_ward")
 
         # Grab datasets from database
         registered = (repo['carlosp_jpva_tkay_yllescas.registered_precincts']).find()
@@ -71,13 +71,13 @@ class registered_and_eligible_aggregation(dml.Algorithm):
                     else:
                         ekeys[prec["Ward"]][amount] = int(prec[amount].replace(',', ''))
 
-        repo['carlosp_jpva_tkay_yllescas.registered_ward_aggregation'].insert_many([rkeys])
-        repo['carlosp_jpva_tkay_yllescas.registered_ward_aggregation'].metadata({'complete': True})
-        print(repo['carlosp_jpva_tkay_yllescas.registered_ward_aggregation'].metadata())
+        repo['carlosp_jpva_tkay_yllescas.registered_by_ward'].insert_many([rkeys])
+        repo['carlosp_jpva_tkay_yllescas.registered_by_ward'].metadata({'complete': True})
+        print(repo['carlosp_jpva_tkay_yllescas.registered_by_ward'].metadata())
 
-        repo['carlosp_jpva_tkay_yllescas.eligible_ward_aggregation'].insert_many([ekeys])
-        repo['carlosp_jpva_tkay_yllescas.eligible_ward_aggregation'].metadata({'complete': True})
-        print(repo['carlosp_jpva_tkay_yllescas.eligible_ward_aggregation'].metadata())
+        repo['carlosp_jpva_tkay_yllescas.eligible_by_ward'].insert_many([ekeys])
+        repo['carlosp_jpva_tkay_yllescas.eligible_by_ward'].metadata({'complete': True})
+        print(repo['carlosp_jpva_tkay_yllescas.eligible_by_ward'].metadata())
 
         repo.logout()
 
@@ -119,8 +119,8 @@ class registered_and_eligible_aggregation(dml.Algorithm):
         doc.usage(get_eligibleWardAggregation, eligible_data, startTime, None, {prov.model.PROV_TYPE: 'ont:Computation'})
         doc.usage(get_registeredWardAggregation, registered_data, startTime, None, {prov.model.PROV_TYPE: 'ont:Computation'})
 
-        eligible_aggregation = doc.entity('dat:/eligible_ward_aggregation', {prov.model.PROV_LABEL: 'Amount of eligible voters in Boston by Ward', prov.model.PROV_TYPE: 'ont:DataSet'})
-        registered_aggregation = doc.entity('dat:/registered_ward_aggregation', {prov.model.PROV_LABEL: 'Amount of registered voters in Boston by Ward', prov.model.PROV_TYPE: 'ont:DataSet'})
+        eligible_aggregation = doc.entity('dat:/eligible_by_ward', {prov.model.PROV_LABEL: 'Amount of eligible voters in Boston by Ward', prov.model.PROV_TYPE: 'ont:DataSet'})
+        registered_aggregation = doc.entity('dat:/registered_by_ward', {prov.model.PROV_LABEL: 'Amount of registered voters in Boston by Ward', prov.model.PROV_TYPE: 'ont:DataSet'})
 
         doc.wasAttributedTo(eligible_aggregation, this_script)
         doc.wasGeneratedBy(eligible_aggregation, get_eligibleWardAggregation, endTime)
