@@ -2,25 +2,21 @@
 
 For this project, we are working with Amplify Latinx and BU Spark! to analyze Massachusetts voting and demographic data to suggest where they should focus their voter turnout efforts in order to get more people of color out to vote.
 
-We are starting with 5 data sets, one of which is public that we found through our own research, and four private data sets which were provided by Amplify Latinx:
+As our team is responsible for creating only the groundwork for what will be a much large project in the future, the scope of data analyzed will be limited to city council race results among Latinx voters within Boston Wards. However, the code shall be built with modularity in mind in order to allow for all political races within all the geo-political subdivisions within Massachusetts. For the scope of this project, we are starting with 3 private data sets provided by Amplify Latinx:
 
-1. Demographics by Towns (public)
-2. Massachusetts Early Voting Data
-3. Registered Voter Demographics
+1. Registered Voter Demographics
    - Senate District
    - Precinct
    - Congressional District
-4. Non-Registered Voter Demographics
+2. Non-Registered Voter Demographics
    - Senate District
    - Precinct
    - Congressional District
-5. Voter Turnout Percentages (1948-2016)
+3. City Council Race Results (2009-2017)
+4. Demographics by Towns
+We are combining these data sets to analyze in which wards people are voting more, what percentage of registered voters are voting within those wards, and how many people are not registered to vote. From this, we will extrapolate where voter registration efforts are going to be effective as based on ratios formed from the amount of Registered to Non-Registered voters and Registered voters to Total Votes cast. Ultimately, our goal is to identify which elections are such that more voters showing up would change the result and provide Amplify Latinx with an interactive, embeddable heat map of Massachusetts.
 
-We are combining these data sets to analyze where people are voting, who is turning out to vote, and extrapolating where voter registration efforts are going to be effective. Ultimately, our goal is to identify which elections are such that more voters showing up would change the result and provide Amplify Latinx with an interactive, embeddable heat map of Massachusetts.
-
-To start, we isolated race and ethnicity data from Registered (3a) and Non-Registered (4a)Voter Demographics by Senate District, and then aggregating those data sets. From this, we produced a coefficient that we plan to further develop for Amplify Latinx to use to strategize. Additionally, we used Demographics by Town (1) and early voting data (2) to compare voter registration percentages with percentages of people of color. This transformation will also be used to suggest where to apply GOTV efforts. For example, if we can identify towns where there is a correlation between low voter registration and high percentage of people of color, we would suggest GOTV efforts there. Finally, we used the Google Geocoding API to transform Demographics by Towns (1) into the geocoding information necessary to use in the map.
-
-
+To start, we isolated Latinx voter data by Boston Ward from Registered (2a) and Non-Registered (3a) Voter Demographics by Precinct, and then aggregated the precincts by Ward. Then, we generated the total vote difference by Ward for the city council race from the relevant data set (3). From here, we generated the various ratios mentioned earlier to find the Wards with the most disproportionate amount of people who could vote but dont. Then, through the application of a constraint satisfaction algorithm, we generated the minimum set of Wards needed to flip the entire race. Additionally, we also generated a coefficient for each Ward to visually display which Wards would likely be the best to campaign in based on the amount of voters that could possibly be gained. ios mentioned previously which we then passed through a constraint satisfaction algorithm to produce a usable coefficient of campaigning effectiveness by Ward. Finally, we used the Google Geocoding API to transform Demographics by Towns (4) into the geocoding information necessary to use in the map.
 
 ## course-2019-spr-proj
 
