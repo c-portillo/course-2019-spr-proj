@@ -61,7 +61,7 @@ class constraint_solver(dml.Algorithm):
         for year in total_votes_by_candidate.find():
             keys = year.keys()
             for key in keys:
-                print (key):
+                print (key)
 
 
 
