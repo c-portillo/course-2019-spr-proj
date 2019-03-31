@@ -6,14 +6,14 @@ import datetime
 import uuid
 
 
-class registered_vs_historical_votes(dml.Algorithm):
+class total_votes_by_candidate(dml.Algorithm):
     contributor = 'carlosp_jpva_tkay_yllescas'
     reads = ["carlosp_jpva_tkay_yllescas.historical_votes"]
-    writes = ['carlosp_jpva_tkay_yllescas.registered_vs_historical_votes']
+    writes = ['carlosp_jpva_tkay_yllescas.total_votes_by_candidate']
 
     @staticmethod
     def execute(trial=False):
-        print("registered_vs_historical_votes")
+        print("total_votes_by_candidate")
         '''Retrieve some data sets (without API).'''
         startTime = datetime.datetime.now()
 
@@ -29,8 +29,8 @@ class registered_vs_historical_votes(dml.Algorithm):
         r = json.loads(json_string)
         s = json.dumps(r, sort_keys=True, indent=2)
 
-        repo.dropCollection("registered_vs_historical_votes")
-        repo.createCollection("registered_vs_historical_votes")
+        repo.dropCollection("total_votes_by_candidate")
+        repo.createCollection("total_votes_by_candidate")
             
         total_votes = {}
         for i in range(len(r)):
@@ -49,9 +49,9 @@ class registered_vs_historical_votes(dml.Algorithm):
                         else: 
                             total_votes[year][x[k]] += int(x[k.strip("Candidate")]) 
     
-        repo['carlosp_jpva_tkay_yllescas.registered_vs_historical_votes'].insert_one(total_votes)
-        repo['carlosp_jpva_tkay_yllescas.registered_vs_historical_votes'].metadata({'complete': True})
-        print(repo['carlosp_jpva_tkay_yllescas.registered_vs_historical_votes'].metadata())
+        repo['carlosp_jpva_tkay_yllescas.total_votes_by_candidate'].insert_one(total_votes)
+        repo['carlosp_jpva_tkay_yllescas.total_votes_by_candidate'].metadata({'complete': True})
+        print(repo['carlosp_jpva_tkay_yllescas.total_votes_by_candidate'].metadata())
 
         repo.logout()
 
@@ -78,29 +78,29 @@ class registered_vs_historical_votes(dml.Algorithm):
         doc.add_namespace('log', 'http://datamechanics.io/log/')  # The event log.
         doc.add_namespace('bdp', 'https://data.cityofboston.gov/resource/')
 
-        this_script = doc.agent('alg:carlosp_jpva_tkay_yllescas#registered_vs_historical_votes',
+        this_script = doc.agent('alg:carlosp_jpva_tkay_yllescas#total_votes_by_candidate',
                                 {prov.model.PROV_TYPE: prov.model.PROV['SoftwareAgent'], 'ont:Extension': 'py'})
         resource = doc.entity('bdp:wc8w-nujj',
                               {'prov:label': '311, Service Requests', prov.model.PROV_TYPE: 'ont:DataResource',
                                'ont:Extension': 'json'})
-        get_registeredvshistoricalVotes = doc.activity('log:uuid' + str(uuid.uuid4()), startTime, endTime)
-        doc.wasAssociatedWith(get_registeredvshistoricalVotes, this_script)
-        doc.usage(get_registeredvshistoricalVotes, resource, startTime, None,
+        get_votesCandidate = doc.activity('log:uuid' + str(uuid.uuid4()), startTime, endTime)
+        doc.wasAssociatedWith(get_votesCandidate, this_script)
+        doc.usage(get_votesCandidate, resource, startTime, None,
                   {prov.model.PROV_TYPE: 'ont:Retrieval',
-                   'ont:Query': '?type=registered_vs_historical_votes&$select=type,latitude,longitude,OPEN_DT'
+                   'ont:Query': '?type=total_votes_by_candidate&$select=type,latitude,longitude,OPEN_DT'
                    }
                   )
 
-        registeredvshistoricalVotes = doc.entity('dat:carlosp_jpva_tkay_yllescas#registered_vs_historical_votes',
+        votesCandidate = doc.entity('dat:carlosp_jpva_tkay_yllescas#total_votes_by_candidate',
                                 {prov.model.PROV_LABEL: 'Historical Votes', prov.model.PROV_TYPE: 'ont:DataSet'})
-        doc.wasAttributedTo(registeredvshistoricalVotes, this_script)
-        doc.wasGeneratedBy(registeredvshistoricalVotes, get_registeredvshistoricalVotes, endTime)
-        doc.wasDerivedFrom(registeredvshistoricalVotes, resource, get_registeredvshistoricalVotes, get_registeredvshistoricalVotes, get_registeredvshistoricalVotes)
+        doc.wasAttributedTo(votesCandidate, this_script)
+        doc.wasGeneratedBy(votesCandidate, get_votesCandidate, endTime)
+        doc.wasDerivedFrom(votesCandidate, resource, get_votesCandidate, get_votesCandidate, get_votesCandidate)
 
         repo.logout()
 
         return doc
 
-# registered_vs_historical_votes.execute()
+# total_votes_by_candidate.execute()
 
 ## eof
