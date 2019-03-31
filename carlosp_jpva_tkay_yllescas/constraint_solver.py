@@ -59,11 +59,12 @@ class constraint_solver(dml.Algorithm):
         total_votes_by_candidate = repo['carlosp_jpva_tkay_yllescas.total_votes_by_candidate'].find()
 
         flip = {}
-        for year in total_votes_by_candidate:
-            print("year",year)
-            keys = year.keys()
-            for key in keys:
-                candidates = year[key].keys()
+        for data in total_votes_by_candidate:
+           
+            years = data.keys() #list of years 
+            for year in years:
+                candidates = data[year].keys() # list of candidates
+                print("candidates:",candidates)
                 #now we have the year and candidate names 
                 #lets compute difference betweeen 1st and second 
                 if key not in flip:
@@ -71,8 +72,7 @@ class constraint_solver(dml.Algorithm):
                 first_place_total =0 
                 second_place_total =0 
                 for candidate in candidates:
-                    print("candidate:", candidate)
-                    if yea
+                    
 
                 
 
