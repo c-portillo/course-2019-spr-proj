@@ -60,19 +60,18 @@ class constraint_solver(dml.Algorithm):
 
         flip = {}
         for data in total_votes_by_candidate:
-           
             years = data.keys() #list of years 
             for year in years:
-                candidates = data[year].keys() # list of candidates
-                print("candidates:",candidates)
-                #now we have the year and candidate names 
-                #lets compute difference betweeen 1st and second 
-                if key not in flip:
-                    flip[key] = {}
-                first_place_total =0 
-                second_place_total =0 
-                for candidate in candidates:
-                    
+                if year != "_id":
+                    candidates = data[year].keys() # list of candidates
+                    #now we have the year and candidate names 
+                    #lets compute difference betweeen 1st and second 
+                    for candidate in candidates:
+                        if candidate not in flip:
+                            flip[candidate] = {}
+                            first_place_total =0 
+                            second_place_total =0 
+        print(flip)
 
                 
 
