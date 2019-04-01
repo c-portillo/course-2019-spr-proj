@@ -9,11 +9,10 @@ import uuid
 class total_votes_by_candidate(dml.Algorithm):
     contributor = 'carlosp_jpva_tkay_yllescas'
     reads = ["carlosp_jpva_tkay_yllescas.historical_votes"]
-    writes = ['carlosp_jpva_tkay_yllescas.total_votes_by_candidate']
+    writes = ['carlosp_jpva_tkay_yllescas.total_votes_by_candidate', 'carlosp_jpva_tkay_yllescas.votes_by_ward']
 
     @staticmethod
     def execute(trial=False):
-        print("total_votes_by_candidate")
         '''Retrieve some data sets (without API).'''
         startTime = datetime.datetime.now()
 
@@ -49,9 +48,43 @@ class total_votes_by_candidate(dml.Algorithm):
                         else: 
                             total_votes[year][x[k]] += int(x[k.strip("Candidate")]) 
     
+        print("total_votes_by_candidate")
         repo['carlosp_jpva_tkay_yllescas.total_votes_by_candidate'].insert_one(total_votes)
         repo['carlosp_jpva_tkay_yllescas.total_votes_by_candidate'].metadata({'complete': True})
         print(repo['carlosp_jpva_tkay_yllescas.total_votes_by_candidate'].metadata())
+        
+        
+        repo.dropCollection("vote_by_ward")
+        repo.createCollection("votes_by_ward")
+
+        # by ward
+        by_ward = {}
+        for i in range(len(r)):
+            year = r[i]["Election-Place"][0:4]
+            if year not in by_ward:
+                by_ward[year] = {}
+            for ward in r[i]:
+                if ward.isdigit():
+                    if ward not in by_ward[year]:
+                        by_ward[year][ward] = {}
+            if "1st" in r[i]["Election-Place"]:
+                for ward in r[i]:
+                    if "Candidate" in ward:
+                        by_ward[year][ward.strip("Candidate")]["first"] = r[i][ward]
+                    elif ward.isdigit(): 
+                        by_ward[year][ward]["difference"] = int(r[i][ward])
+            if "2nd" in r[i]["Election-Place"]:
+                for ward in r[i]:
+                    if "Candidate" in ward:
+                        by_ward[year][ward.strip("Candidate")]["second"] = r[i][ward]
+                    elif ward.isdigit():
+                        by_ward[year][ward]["difference"] -= int(r[i][ward])
+        
+        print("votes_by_ward")
+        repo['carlosp_jpva_tkay_yllescas.votes_by_ward'].insert_one(by_ward)
+        repo['carlosp_jpva_tkay_yllescas.votes_by_ward'].metadata({'complete': True})
+        print(repo['carlosp_jpva_tkay_yllescas.votes_by_ward'].metadata())
+
 
         repo.logout()
 
@@ -101,6 +134,6 @@ class total_votes_by_candidate(dml.Algorithm):
 
         return doc
 
-# total_votes_by_candidate.execute()
+## total_votes_by_candidate.execute()
 
 ## eof
