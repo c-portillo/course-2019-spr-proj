@@ -1,3 +1,6 @@
+# writes to database
+# not using bc by precinct
+
 import urllib.request
 import json
 import dml

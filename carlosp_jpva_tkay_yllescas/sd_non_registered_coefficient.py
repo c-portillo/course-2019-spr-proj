@@ -9,7 +9,7 @@ import pandas as pd
 from pprint import pprint
 class sd_non_registered_coefficient(dml.Algorithm):
     contributor = 'carlosp_jpva_tkay_yllescas'
-    reads = ['carlosp_jpva_tkay_yllescas.registered', 'carlosp_jpva_tkay_yllescas.non_registered_voters']
+    reads = ['carlosp_jpva_tkay_yllescas.registered_sd', 'carlosp_jpva_tkay_yllescas.non_registered_voters_sd']
     writes = ['carlosp_jpva_tkay_yllescas.sd_non_registered_coefficient']
 
     @staticmethod

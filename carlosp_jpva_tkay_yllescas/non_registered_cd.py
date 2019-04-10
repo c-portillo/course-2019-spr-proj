@@ -1,3 +1,7 @@
+# writes to database
+# congressional districts
+# not using
+
 import urllib.request
 import json
 import dml

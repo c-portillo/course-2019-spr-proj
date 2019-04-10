@@ -1,3 +1,7 @@
+# writes eligible_by_ward to database
+# total number of eligible voters, broken up by race
+# not using, have the data elsewhere
+
 import urllib.request
 import json
 import dml

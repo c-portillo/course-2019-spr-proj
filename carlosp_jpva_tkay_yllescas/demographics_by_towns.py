@@ -1,3 +1,7 @@
+# writes demographics_by_towns to database
+# shows race data per town (all of mass)
+# not using
+
 import urllib.request
 import json
 import dml

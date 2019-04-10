@@ -8,7 +8,7 @@ import uuid
 
 class total_votes_by_candidate(dml.Algorithm):
     contributor = 'carlosp_jpva_tkay_yllescas'
-    reads = ["carlosp_jpva_tkay_yllescas.historical_votes"]
+    reads = ["carlosp_jpva_tkay_yllescas.historical_votes_latinx"]
     writes = ['carlosp_jpva_tkay_yllescas.total_votes_by_candidate', 'carlosp_jpva_tkay_yllescas.votes_by_ward']
 
     @staticmethod

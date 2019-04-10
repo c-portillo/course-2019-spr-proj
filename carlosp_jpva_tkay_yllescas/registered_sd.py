@@ -5,10 +5,10 @@ import prov.model
 import datetime
 import uuid
 
-class registered(dml.Algorithm):
+class registered_sd(dml.Algorithm):
     contributor = 'carlosp_jpva_tkay_yllescas'
     reads = []
-    writes = ['carlosp_jpva_tkay_yllescas.registered']
+    writes = ['carlosp_jpva_tkay_yllescas.registered_sd']
 
     @staticmethod
     def execute(trial = False):
@@ -26,11 +26,11 @@ class registered(dml.Algorithm):
             json_string = datafile.read()
         r = json.loads(json_string)
         s = json.dumps(r, sort_keys=True, indent=2)
-        repo.dropCollection("registered")
-        repo.createCollection("registered")
-        repo['carlosp_jpva_tkay_yllescas.registered'].insert_many(r)
-        repo['carlosp_jpva_tkay_yllescas.registered'].metadata({'complete':True})
-        print(repo['carlosp_jpva_tkay_yllescas.registered'].metadata())
+        repo.dropCollection("registered_sd")
+        repo.createCollection("registered_sd")
+        repo['carlosp_jpva_tkay_yllescas.registered_sd'].insert_many(r)
+        repo['carlosp_jpva_tkay_yllescas.registered_sd'].metadata({'complete':True})
+        print(repo['carlosp_jpva_tkay_yllescas.registered_sd'].metadata())
         
         repo.logout()
         
@@ -56,7 +56,7 @@ class registered(dml.Algorithm):
         doc.add_namespace('log', 'http://datamechanics.io/log/') # The event log.
         doc.add_namespace('bdp', 'https://data.cityofboston.gov/resource/')
 
-        this_script = doc.agent('alg:carlosp_jpva_tkay_yllescas#registered', {prov.model.PROV_TYPE:prov.model.PROV['SoftwareAgent'], 'ont:Extension':'py'})
+        this_script = doc.agent('alg:carlosp_jpva_tkay_yllescas#registered_sd', {prov.model.PROV_TYPE:prov.model.PROV['SoftwareAgent'], 'ont:Extension':'py'})
         resource = doc.entity('bdp:wc8w-nujj', {'prov:label':'311, Service Requests', prov.model.PROV_TYPE:'ont:DataResource', 'ont:Extension':'json'})
         get_registered = doc.activity('log:uuid'+str(uuid.uuid4()), startTime, endTime)
         doc.wasAssociatedWith(get_registered, this_script)
@@ -66,7 +66,7 @@ class registered(dml.Algorithm):
                   }
                   )
 
-        registered = doc.entity('dat:carlosp_jpva_tkay_yllescas#registered', {prov.model.PROV_LABEL:'Registered Voters', prov.model.PROV_TYPE:'ont:DataSet'})
+        registered = doc.entity('dat:carlosp_jpva_tkay_yllescas#registered_sd', {prov.model.PROV_LABEL:'Registered Voters', prov.model.PROV_TYPE:'ont:DataSet'})
         doc.wasAttributedTo(registered, this_script)
         doc.wasGeneratedBy(registered, get_registered, endTime)
         doc.wasDerivedFrom(registered, resource, get_registered, get_registered, get_registered)

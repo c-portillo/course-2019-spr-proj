@@ -1,4 +1,6 @@
-# using voter turnouts and demographics by towns, evaluate, agg sum for total population 2010 and 2000, and find out how many are registered and voting, registered and not voting, not registered, etc.
+# finds google geocode for town
+# not using because not just Boston
+
 import urllib
 import json
 import dml

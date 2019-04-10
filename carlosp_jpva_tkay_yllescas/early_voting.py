@@ -1,3 +1,7 @@
+# writes mass_early_voting to database
+# data by town about registered voters as of 10/19/2016
+# not using
+
 import urllib.request
 import json
 import dml

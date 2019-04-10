@@ -1,3 +1,6 @@
+# doesn't do anything yet, but is going to load all of the wards
+# suggest wards to visit, least amount to flip results
+
 import urllib.request
 import json
 import dml
