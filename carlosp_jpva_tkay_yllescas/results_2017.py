@@ -21,7 +21,7 @@ class results_2017(dml.Algorithm):
         repo = client.repo
         repo.authenticate('carlosp_jpva_tkay_yllescas', 'carlosp_jpva_tkay_yllescas')
         
-        file = '../data/2017_results.json'
+        file = 'data/2017_results.json'
         with open(file, "r", encoding = "utf8") as datafile:
             json_string = datafile.read()
         r = json.loads(json_string)
