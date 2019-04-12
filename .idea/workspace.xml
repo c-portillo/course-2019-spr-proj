@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dd2bdfa2-fb11-4f2d-a97f-5e6cf62770a6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/course-2019-spr-proj.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/carlosp_jpva_tkay_yllescas/city_race_diff_to_flip.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/carlosp_jpva_tkay_yllescas/city_race_diff_to_flip.py" beforeDir="false" afterPath="$PROJECT_DIR$/carlosp_jpva_tkay_yllescas/city_race_diff_to_flip.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,23 +20,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/carlosp_jpva_tkay_yllescas/registered_and_eligible_projection_to_ward.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="258">
-              <caret line="122" column="31" selection-start-line="122" selection-start-column="31" selection-end-line="122" selection-end-column="31" />
-              <folding>
-                <element signature="e#0#21#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/carlosp_jpva_tkay_yllescas/city_race_diff_to_flip.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="267">
-              <caret line="88" column="74" lean-forward="true" selection-start-line="88" selection-start-column="74" selection-end-line="88" selection-end-column="74" />
+            <state relative-caret-position="320">
+              <caret line="44" column="52" selection-start-line="44" selection-start-column="52" selection-end-line="44" selection-end-column="52" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
               </folding>
@@ -50,10 +33,13 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/carlosp_jpva_tkay_yllescas/non_registered_cd.py">
+        <entry file="file://$PROJECT_DIR$/carlosp_jpva_tkay_yllescas/regisitered_voters_didnt_turn_out.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="166">
-              <caret line="91" selection-start-line="91" selection-end-line="95" selection-end-column="3" />
+            <state relative-caret-position="966">
+              <caret line="63" column="59" lean-forward="true" selection-start-line="63" selection-start-column="59" selection-end-line="63" selection-end-column="59" />
+              <folding>
+                <element signature="e#0#21#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -362,12 +348,12 @@
       <workItem from="1554490364858" duration="4080000" />
       <workItem from="1554932714997" duration="3142000" />
       <workItem from="1554935923630" duration="1488000" />
-      <workItem from="1555086647639" duration="8826000" />
+      <workItem from="1555086647639" duration="10441000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="63905000" />
+    <option name="totallyTimeSpent" value="65520000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -400,7 +386,7 @@
     <option name="version" value="1" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/course_2019_spr_proj$city_race_diff_to_flip.coverage" NAME="city_race_diff_to_flip Coverage Results" MODIFIED="1555096327635" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/carlosp_jpva_tkay_yllescas" />
+    <SUITE FILE_PATH="coverage/course_2019_spr_proj$city_race_diff_to_flip.coverage" NAME="city_race_diff_to_flip Coverage Results" MODIFIED="1555099523709" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/carlosp_jpva_tkay_yllescas" />
     <SUITE FILE_PATH="coverage/course_2019_spr_proj$registered_and_eligible_aggregation.coverage" NAME="registered_and_eligible_aggregation Coverage Results" MODIFIED="1555093055402" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/carlosp_jpva_tkay_yllescas" />
   </component>
   <component name="debuggerHistoryManager">
@@ -625,10 +611,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/carlosp_jpva_tkay_yllescas/regisitered_voters_didnt_turn_out.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="966">
+          <caret line="63" column="59" lean-forward="true" selection-start-line="63" selection-start-column="59" selection-end-line="63" selection-end-column="59" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/carlosp_jpva_tkay_yllescas/city_race_diff_to_flip.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="88" column="74" lean-forward="true" selection-start-line="88" selection-start-column="74" selection-end-line="88" selection-end-column="74" />
+        <state relative-caret-position="320">
+          <caret line="44" column="52" selection-start-line="44" selection-start-column="52" selection-end-line="44" selection-end-column="52" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
           </folding>

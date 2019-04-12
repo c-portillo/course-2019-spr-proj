@@ -24,23 +24,25 @@ class city_race_diff_to_flip(dml.Algorithm):
         repo.dropCollection("city_race_diff_to_flip")
         repo.createCollection("city_race_diff_to_flip")
 
+        excluded_names = ["ALL OTHERS", "VOTES CAST", "BLANKS", "BALLOTS CAST"]
         city_council_race = (repo['carlosp_jpva_tkay_yllescas.results_2017']).find()
         winner = {"Candidate":"", "Total":0}
         runner_up = {"Candidate":"", "Total":0}
         for nominee in city_council_race:
-            if int(nominee["Total"].replace(",", "")) > winner["Total"]:
-                winner = {x:int(nominee[x].replace(",", "")) for x in nominee if (x != "_id" and x != "Candidate")}
-                winner["Candidate"] = nominee["Candidate"]
-            elif int(nominee["Total"].replace(",", "")) > runner_up["Total"]:
-                runner_up = {x:int(nominee[x].replace(",", "")) for x in nominee if (x != "_id" and x != "Candidate")}
-                runner_up["Candidate"] = nominee["Candidate"]
+            if nominee["Candidate"] not in excluded_names:
+                if int(nominee["Total"].replace(",", "")) > winner["Total"]:
+                    winner = {x:int(nominee[x].replace(",", "")) for x in nominee if (x != "_id" and x != "Candidate")}
+                    winner["Candidate"] = nominee["Candidate"]
+                elif int(nominee["Total"].replace(",", "")) > runner_up["Total"]:
+                    runner_up = {x:int(nominee[x].replace(",", "")) for x in nominee if (x != "_id" and x != "Candidate")}
+                    runner_up["Candidate"] = nominee["Candidate"]
 
 
         winner_and_runner_up = {"winner":winner, "runner_up":runner_up, "diff_by_ward":{},
                                 "total_diff":abs((winner["Total"] - runner_up["Total"]))}
         for wards in winner:
             if wards != "Candidate":
-                diff = abs(winner[wards] - winner[wards])
+                diff = abs(winner[wards] - runner_up[wards])
                 winner_and_runner_up["diff_by_ward"][wards] = diff
 
         repo['carlosp_jpva_tkay_yllescas.city_race_diff_to_flip'].insert_one(winner_and_runner_up)
@@ -99,7 +101,7 @@ class city_race_diff_to_flip(dml.Algorithm):
 
         return doc
 
-#city_race_diff_to_flip.execute()
+city_race_diff_to_flip.execute()
 
 
 ## eof
