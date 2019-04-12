@@ -4,11 +4,12 @@ import dml
 import prov.model
 import datetime
 import uuid
+import operator
 
 class registered_voters_didnt_turn_out(dml.Algorithm):
     contributor = 'carlosp_jpva_tkay_yllescas'
-    reads = ['carlosp_jpva_tkay_yllescas.registered_by_ward', 'carlosp_jpva_tkay_yllescas.results_2017']
-    writes = ['carlosp_jpva_tkay_yllescas.registered_voters_didnt_turn_out']
+    reads = ['carlosp_jpva_tkay_yllescas.registered_by_ward', 'carlosp_jpva_tkay_yllescas.results_2017','carlosp_jpva_tkay_yllescas.city_race_diff_to_flip']
+    writes = ['carlosp_jpva_tkay_yllescas.registered_voters_didnt_turn_out', 'carlosp_jpva_tkay_yllescas.wards_to_visit']
 
     @staticmethod
     def execute(trial=False):
@@ -23,7 +24,9 @@ class registered_voters_didnt_turn_out(dml.Algorithm):
 
         repo.dropCollection("registered_voters_didnt_turn_out")
         repo.createCollection("registered_voters_didnt_turn_out")
-        repo.createCollection("registered_voters_didnt_turn_out")
+
+        repo.dropCollection("carlosp_jpva_tkay_yllescas.wards_to_visit")
+        repo.createCollection("carlosp_jpva_tkay_yllescas.wards_to_visit")
 
 
         # Grab datasets from database
@@ -64,7 +67,48 @@ class registered_voters_didnt_turn_out(dml.Algorithm):
         print("total_ballots_cast_by_ward", total_ballots_cast_by_ward)
         print("final result: total people who were registered and didn't turn out", total_who_didnt_turn_out_by_ward)
 
+        
+
         endTime = datetime.datetime.now()
+
+        ##sort total who didnt turn out by ward
+        sorted_total = sorted(total_who_didnt_turn_out_by_ward.items(), key=operator.itemgetter(1), reverse= True)
+
+
+        print("sorted total", sorted_total)
+        diff_to_flip = (repo['carlosp_jpva_tkay_yllescas.city_race_diff_to_flip']).find({},{"total_diff" : 1})
+        for x in diff_to_flip:
+            diff_to_flip = x['total_diff']
+        print('diff_to_flip',diff_to_flip)
+
+        total_flipped = 0
+        flip_percentage = 0.5
+        possible = False
+        wards_to_visit = {}
+        for ward, total in sorted_total:
+            projected_flip = int(total * flip_percentage)
+            total_flipped += projected_flip
+            wards_to_visit[ward] = projected_flip
+            if total_flipped >= diff_to_flip:
+                possible = True
+                break
+       
+
+            #do something if not possible?
+        print( "wards_to_visit", wards_to_visit)
+        repo['carlosp_jpva_tkay_yllescas.registered_voters_didnt_turn_out'].insert(total_who_didnt_turn_out_by_ward)
+        repo['carlosp_jpva_tkay_yllescas.wards_to_visit'].insert(wards_to_visit)
+
+        repo['carlosp_jpva_tkay_yllescas.registered_voters_didnt_turn_out'].metadata({'complete': True})
+        print(repo['carlosp_jpva_tkay_yllescas.registered_voters_didnt_turn_out'].metadata())
+
+        repo['carlosp_jpva_tkay_yllescas.wards_to_visit'].metadata({'complete': True})
+        print(repo['carlosp_jpva_tkay_yllescas.wards_to_visit'].metadata())
+
+
+        
+
+
 
 
         return {"start": startTime, "end": endTime}

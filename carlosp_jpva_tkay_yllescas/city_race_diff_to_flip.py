@@ -42,7 +42,7 @@ class city_race_diff_to_flip(dml.Algorithm):
                                 "total_diff":abs((winner["Total"] - runner_up["Total"]))}
         for wards in winner:
             if wards != "Candidate":
-                diff = abs(winner[wards] - runner_up[wards])
+                diff = winner[wards] - runner_up[wards]
                 winner_and_runner_up["diff_by_ward"][wards] = diff
 
         repo['carlosp_jpva_tkay_yllescas.city_race_diff_to_flip'].insert_one(winner_and_runner_up)
