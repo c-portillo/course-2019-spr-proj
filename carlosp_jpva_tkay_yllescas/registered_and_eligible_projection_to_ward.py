@@ -9,7 +9,7 @@ import uuid
 class registered_and_eligible_projection_to_ward(dml.Algorithm):
     contributor = 'carlosp_jpva_tkay_yllescas'
     reads = ['carlosp_jpva_tkay_yllescas.registered_precincts', 'carlosp_jpva_tkay_yllescas.non_registered_precincts']
-    writes = ['carlosp_jpva_tkay_yllescas.registered_by_ward', 'carlosp_jpva_tkay_yllescas.eligible_by_ward']
+    writes = ['carlosp_jpva_tkay_yllescas.registered_by_ward', 'carlosp_jpva_tkay_yllescas.eligible_ward']
 
     @staticmethod
     def execute(trial=False):
@@ -25,8 +25,8 @@ class registered_and_eligible_projection_to_ward(dml.Algorithm):
         repo.dropCollection("registered_by_ward")
         repo.createCollection("registered_by_ward")
 
-        repo.dropCollection("eligible_by_ward")
-        repo.createCollection("eligible_by_ward")
+        repo.dropCollection("eligible_ward")
+        repo.createCollection("eligible_ward")
 
         # Grab datasets from database
         registered = (repo['carlosp_jpva_tkay_yllescas.registered_precincts']).find()
@@ -75,9 +75,9 @@ class registered_and_eligible_projection_to_ward(dml.Algorithm):
         repo['carlosp_jpva_tkay_yllescas.registered_by_ward'].metadata({'complete': True})
         print(repo['carlosp_jpva_tkay_yllescas.registered_by_ward'].metadata())
 
-        repo['carlosp_jpva_tkay_yllescas.eligible_by_ward'].insert_many([ekeys])
-        repo['carlosp_jpva_tkay_yllescas.eligible_by_ward'].metadata({'complete': True})
-        print(repo['carlosp_jpva_tkay_yllescas.eligible_by_ward'].metadata())
+        repo['carlosp_jpva_tkay_yllescas.eligible_ward'].insert_many([ekeys])
+        repo['carlosp_jpva_tkay_yllescas.eligible_ward'].metadata({'complete': True})
+        print(repo['carlosp_jpva_tkay_yllescas.eligible_ward'].metadata())
 
         repo.logout()
 
@@ -119,7 +119,7 @@ class registered_and_eligible_projection_to_ward(dml.Algorithm):
         doc.usage(get_eligibleWardAggregation, eligible_data, startTime, None, {prov.model.PROV_TYPE: 'ont:Computation'})
         doc.usage(get_registeredWardAggregation, registered_data, startTime, None, {prov.model.PROV_TYPE: 'ont:Computation'})
 
-        eligible_aggregation = doc.entity('dat:/eligible_by_ward', {prov.model.PROV_LABEL: 'Amount of eligible voters in Boston by Ward', prov.model.PROV_TYPE: 'ont:DataSet'})
+        eligible_aggregation = doc.entity('dat:/eligible_ward', {prov.model.PROV_LABEL: 'Amount of eligible voters in Boston by Ward', prov.model.PROV_TYPE: 'ont:DataSet'})
         registered_aggregation = doc.entity('dat:/registered_by_ward', {prov.model.PROV_LABEL: 'Amount of registered voters in Boston by Ward', prov.model.PROV_TYPE: 'ont:DataSet'})
 
         doc.wasAttributedTo(eligible_aggregation, this_script)
