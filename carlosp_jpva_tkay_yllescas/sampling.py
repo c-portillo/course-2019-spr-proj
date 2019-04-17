@@ -117,12 +117,10 @@ class sampling(dml.Algorithm):
         for ward in stats:
             if ward[0] == "W" and (stats[ward]["H_Prop"]) > 0.2:
                 wards.append(ward)
-            
-        print(wards)   
-        
-#        repo['carlosp_jpva_tkay_yllescas.sampling'].insert_many(r)
-#        repo['carlosp_jpva_tkay_yllescas.sampling'].metadata({'complete':True})
-#        print(repo['carlosp_jpva_tkay_yllescas.sampling'].metadata())
+
+        repo['carlosp_jpva_tkay_yllescas.sampling'].insert_one(stats)
+        repo['carlosp_jpva_tkay_yllescas.sampling'].metadata({'complete':True})
+        print(repo['carlosp_jpva_tkay_yllescas.sampling'].metadata())
         
         repo.logout()
         
@@ -167,7 +165,7 @@ class sampling(dml.Algorithm):
                   
         return doc
     
-## sampling.execute()
+sampling.execute()
 
 '''
 # This is example code you might use for debugging this module.
