@@ -63,10 +63,10 @@ class registered_voters_didnt_turn_out(dml.Algorithm):
 
         
 
-        print("total registered by ward ", total_registered_by_ward)
-        print("------------------------------")
-        print("total_ballots_cast_by_ward", total_ballots_cast_by_ward)
-        print("final result: total people who were registered and didn't turn out", total_who_didnt_turn_out_by_ward)
+       # print("total registered by ward ", total_registered_by_ward)
+        #print("------------------------------")
+        #print("total_ballots_cast_by_ward", total_ballots_cast_by_ward)
+        #print("final result: total people who were registered and didn't turn out", total_who_didnt_turn_out_by_ward)
 
         
 
@@ -93,7 +93,7 @@ class registered_voters_didnt_turn_out(dml.Algorithm):
                     #print("key",key)
                     hispanic_total[str(i)] = ward[key]['H_Prop']
                     i += 1
-        print("total" , hispanic_total)
+        #print("total" , hispanic_total)
 
 
 
@@ -111,13 +111,12 @@ class registered_voters_didnt_turn_out(dml.Algorithm):
                 possible = True
                 break;
             projected_flip = int(total * flip_percentage_constraint)
-            print("hispanic proportion for ward" + str(ward) , hispanic_total[str(ward)] )
+           # print("hispanic proportion for ward" + str(ward) , hispanic_total[str(ward)] )
             if float(hispanic_total[ward]) > hispanic_proportion_constraint:
                 total_flipped += projected_flip
                 wards_to_visit[ward] = projected_flip
-                print("     added")
-            else:
-                print("      not added")
+            #    print("     added")
+           
             
             
             
@@ -161,38 +160,40 @@ class registered_voters_didnt_turn_out(dml.Algorithm):
         doc.add_namespace('ont', 'http://datamechanics.io/ontology#')  # 'Extension', 'DataResource', 'DataSet', 'Retrieval', 'Query', or 'Computation'.
         doc.add_namespace('log', 'http://datamechanics.io/log/')  # The event log.
 
-        this_script = doc.agent('alg:carlosp_jpva_tkay_yllescas#registered_and_eligible_aggregation',
+        this_script = doc.agent('alg:carlosp_jpva_tkay_yllescas#registered_voters_didnt_turn_out',
                                 {prov.model.PROV_TYPE: prov.model.PROV['SoftwareAgent'], 'ont:Extension': 'py'})
-        registered_data = doc.entity('dat:data#non_registered_Precinct',
+        registered_by_ward = doc.entity('dat:data#registered_by_ward',
                               {'prov:label': 'Eligible voters in all Precincts in MA', prov.model.PROV_TYPE: 'ont:DataResource',
                                'ont:Extension': 'json'})
-        eligible_data = doc.entity('dat:data#registered_voters_Precinct',
-                              {'prov:label': 'Registered voters in all Precincts in MA', prov.model.PROV_TYPE: 'ont:DataResource',
+        results_2017 = doc.entity('dat:data#results_2017',
+                              {'prov:label': '2017 City election results', prov.model.PROV_TYPE: 'ont:DataResource',
                                'ont:Extension': 'json'})
 
-        get_eligibleWardAggregation = doc.activity('log:uuid' + str(uuid.uuid4()), startTime, endTime)
-        get_registeredWardAggregation = doc.activity('log:uuid' + str(uuid.uuid4()), startTime, endTime)
-        doc.wasAssociatedWith(get_eligibleWardAggregation, this_script)
-        doc.wasAssociatedWith(get_registeredWardAggregation, this_script)
+        get_ward_total= doc.activity('log:uuid' + str(uuid.uuid4()), startTime, endTime)
+        get_hispanic_population = doc.activity('log:uuid' + str(uuid.uuid4()), startTime, endTime)
+        constraint_solver  = doc.activity('log:uuid' + str(uuid.uuid4()), startTime, endTime)
+        doc.wasAssociatedWith(get_ward_total, this_script)
+        doc.wasAssociatedWith(get_hispanic_population, this_script)
+        doc.wasAssociatedWith(constraint_solver, this_script)
 
-        doc.usage(get_eligibleWardAggregation, eligible_data, startTime, None, {prov.model.PROV_TYPE: 'ont:Computation'})
-        doc.usage(get_registeredWardAggregation, registered_data, startTime, None, {prov.model.PROV_TYPE: 'ont:Computation'})
+        doc.usage(get_ward_total, results_2017, startTime, None, {prov.model.PROV_TYPE: 'ont:Computation'})
+        doc.usage(get_hispanic_population, registered_by_ward, startTime, None, {prov.model.PROV_TYPE: 'ont:Computation'})
+        doc.usage(constraint_solver, get_hispanic_population, startTime, None, {prov.model.PROV_TYPE: 'ont:Computation'})
 
-        eligible_aggregation = doc.entity('dat:/eligible_by_ward', {prov.model.PROV_LABEL: 'Amount of eligible voters in Boston by Ward', prov.model.PROV_TYPE: 'ont:DataSet'})
-        registered_aggregation = doc.entity('dat:/registered_by_ward', {prov.model.PROV_LABEL: 'Amount of registered voters in Boston by Ward', prov.model.PROV_TYPE: 'ont:DataSet'})
+        voters_not_turnout = doc.entity('dat:/registered_voters_didnt_turn_out', {prov.model.PROV_LABEL: "Registered voters who didn't turn out ", prov.model.PROV_TYPE: 'ont:DataSet'})
+        wards_to_visit = doc.entity('dat:/wards_to_visit', {prov.model.PROV_LABEL: 'Wards to visit that satisfy constraints', prov.model.PROV_TYPE: 'ont:DataSet'})
 
-        doc.wasAttributedTo(eligible_aggregation, this_script)
-        doc.wasGeneratedBy(eligible_aggregation, get_eligibleWardAggregation, endTime)
-        doc.wasDerivedFrom(eligible_aggregation, eligible_data, get_eligibleWardAggregation, get_eligibleWardAggregation, get_eligibleWardAggregation)
+        doc.wasAttributedTo(voters_not_turnout, this_script)
+        doc.wasGeneratedBy(voters_not_turnout, get_ward_total, endTime)
+        doc.wasDerivedFrom(voters_not_turnout, results_2017, get_ward_total)
 
-        doc.wasAttributedTo(registered_aggregation, this_script)
-        doc.wasGeneratedBy(registered_aggregation, get_registeredWardAggregation, endTime)
-        doc.wasDerivedFrom(registered_aggregation, registered_data, get_registeredWardAggregation, get_registeredWardAggregation,
-                           get_registeredWardAggregation)
+        doc.wasAttributedTo(wards_to_visit, this_script)
+        doc.wasGeneratedBy(wards_to_visit, get_hispanic_population, endTime)
+        doc.wasDerivedFrom(wards_to_visit, registered_by_ward, get_hispanic_population)
 
         repo.logout()
 
         return doc
-registered_voters_didnt_turn_out.execute()
+#registered_voters_didnt_turn_out.execute()
 
 ## eof
