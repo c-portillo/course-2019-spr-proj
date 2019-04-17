@@ -8,7 +8,7 @@ import operator
 
 class registered_voters_didnt_turn_out(dml.Algorithm):
     contributor = 'carlosp_jpva_tkay_yllescas'
-    reads = ['carlosp_jpva_tkay_yllescas.registered_by_ward', 'carlosp_jpva_tkay_yllescas.results_2017','carlosp_jpva_tkay_yllescas.city_race_diff_to_flip']
+    reads = ['carlosp_jpva_tkay_yllescas.registered_by_ward', 'carlosp_jpva_tkay_yllescas.results_2017','carlosp_jpva_tkay_yllescas.city_race_diff_to_flip','carlosp_jpva_tkay_yllescas.sampling']
     writes = ['carlosp_jpva_tkay_yllescas.registered_voters_didnt_turn_out', 'carlosp_jpva_tkay_yllescas.wards_to_visit']
 
     @staticmethod
@@ -32,6 +32,7 @@ class registered_voters_didnt_turn_out(dml.Algorithm):
         # Grab datasets from database
         registered = (repo['carlosp_jpva_tkay_yllescas.registered_by_ward']).find()
         results_2017 = (repo['carlosp_jpva_tkay_yllescas.results_2017']).find()
+        demographics_db = (repo['carlosp_jpva_tkay_yllescas.sampling']).find()
 
         #get the keys 
         total_registered_by_ward = {}
@@ -80,18 +81,47 @@ class registered_voters_didnt_turn_out(dml.Algorithm):
         for x in diff_to_flip:
             diff_to_flip = x['total_diff']
         print('diff_to_flip',diff_to_flip)
+        hispanic_total = {}
+        
+        i = 1
+
+        for ward in (repo['carlosp_jpva_tkay_yllescas.sampling']).find():
+            keys = ward.keys()
+            print("keys", keys)
+            for key in keys:
+                if key != '_id'  and key != 'aggregate':
+                    #print("key",key)
+                    hispanic_total[str(i)] = ward[key]['H_Prop']
+                    i += 1
+        print("total" , hispanic_total)
+
+
+
+        
 
         total_flipped = 0
-        flip_percentage = 0.5
+        flip_percentage_constraint = 0.5
+        hispanic_proportion_constraint = 0.04
         possible = False
         wards_to_visit = {}
+        
+
         for ward, total in sorted_total:
-            projected_flip = int(total * flip_percentage)
-            total_flipped += projected_flip
-            wards_to_visit[ward] = projected_flip
-            if total_flipped >= diff_to_flip:
+            if (total_flipped >= diff_to_flip):
                 possible = True
-                break
+                break;
+            projected_flip = int(total * flip_percentage_constraint)
+            print("hispanic proportion for ward" + str(ward) , hispanic_total[str(ward)] )
+            if float(hispanic_total[ward]) > hispanic_proportion_constraint:
+                total_flipped += projected_flip
+                wards_to_visit[ward] = projected_flip
+                print("     added")
+            else:
+                print("      not added")
+            
+            
+            
+     
        
 
             #do something if not possible?

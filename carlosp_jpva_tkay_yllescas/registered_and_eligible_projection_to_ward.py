@@ -134,5 +134,5 @@ class registered_and_eligible_projection_to_ward(dml.Algorithm):
         repo.logout()
 
         return doc
-
+registered_and_eligible_projection_to_ward.execute()
 ## eof
