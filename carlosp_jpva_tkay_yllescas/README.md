@@ -1,6 +1,6 @@
-## Growing Voter Engagement in Communities of Color
+# Growing Voter Engagement in Communities of Color
 
-# Carlos Portilla, JP Vasquez, Tallulah Kay, Gabriel Yllescas
+## Carlos Portilla, JP Vasquez, Tallulah Kay, Gabriel Yllescas
 
 Carlos Portilla, JP Vasquez, Tallulah Kay, Gabriel Yllescas
 
