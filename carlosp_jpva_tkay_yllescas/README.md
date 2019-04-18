@@ -24,7 +24,11 @@ For the scope of this project, we are primarily using 4 private data sets, provi
 
   [results]: https://www.boston.gov/sites/default/files/2017_-_11-07-17_-_city_councillor_at_large_ward_precinct_results.pdf?fbclid=IwAR0FimlNPxQ1WkOBau8nOWlXGUCU_A_gtFel71KmKQkuUC7xnEVlBjGF-6I
 
-4. `Demographics by Towns` [source][http://archive.boston.com/news/local/massachusetts/graphics/03_22_11_2010_census_town_population/?fbclid=IwAR1-4mbJ6MZbR9u2sNwsebbWGTaEo3pDR3wJjjAonrZEJhm1EbQz6i0mrW0]
+4. `Demographics by Towns` [source][dems]
+
+  [dems]: http://archive.boston.com/news/local/massachusetts/graphics/03_22_11_2010_census_town_population/?fbclid=IwAR1-4mbJ6MZbR9u2sNwsebbWGTaEo3pDR3wJjjAonrZEJhm1EbQz6i0mrW0
+
+
 
 ## Data Transformations
 
