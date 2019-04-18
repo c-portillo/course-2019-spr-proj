@@ -10,7 +10,7 @@ As our team is responsible for creating only the groundwork for what will be a m
 
 ## Data Import
 
-For the scope of this project, we are primarily using 4 private data sets, provided by Amplify Latinx:
+For the scope of this project, we are using 6 data sets, two of which are public that we found through our own research, and four private data sets which were provided by Amplify Latinx:
 
 1. `Registered Voter Demographics`
    - Senate District
@@ -20,14 +20,16 @@ For the scope of this project, we are primarily using 4 private data sets, provi
    - Senate District
    - Precinct
    - Congressional District
-3. [`City Council Race Results (2009-2017)`][results]
-4. [`Demographics by Towns`][dems]
+3. Massachusetts Early Voting Data
+4. Voter Turnout Percentages (1948-2016)
+5. [`City Council Race Results (2009-2017)`][results]
+6. [`Demographics by Towns`][dems]
 
 ## Data Transformations
 
 We are combining these data sets to produce 3 metrics: in which wards people are voting more, what percentage of registered voters are voting within those wards, and how many people are not registered to vote. From this, we will extrapolate where voter registration efforts are going to be effective as based on ratios formed from the amount of registered to non-registered voters and registered voters to total votes cast. Ultimately, our goal is to identify which elections are such that more voters showing up would change the result and provide Amplify Latinx with an interactive, embeddable heat map of Massachusetts that will illustrate this data.
 
-To do so, we isolated Latinx voter data by Boston Ward from `Registered Voter Demographics` and `Non-Registered Voter Demographics` by `Precinct`, and then aggregated the precincts, by ward. Then, we generated the total vote difference by ward for the city council race from the `City Council Race Results (2009-2017)`. From here, we generated the aforementioned ratios to find the wards with the most disproportionate amount of people who could vote but dont. 
+To do so, we isolated Latinx voter data by Boston Ward from `Registered Voter Demographics` and `Non-Registered Voter Demographics` by `Precinct`, and then aggregated the precincts, by ward. Then, we generated the total vote difference by ward for the city council race from the `City Council Race Results (2009-2017)`. From here, we generated the aforementioned ratios to find the wards with the most disproportionate amount of people who could vote but dont. Additionally, we used `Demographics by Towns` and `Massachusetts Early Voting Data` to compare voter registration percentages with percentages of people of color. 
 
 ## Statistical Analysis
 
