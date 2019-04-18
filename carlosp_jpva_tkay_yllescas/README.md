@@ -20,8 +20,8 @@ For the scope of this project, we are primarily using 4 private data sets, provi
    - Senate District
    - Precinct
    - Congressional District
-3. `City Council Race Results (2009-2017)` [source][results]
-4. `Demographics by Towns` [source][dems]
+3. [`City Council Race Results (2009-2017)`][results]
+4. [`Demographics by Towns`][dems]
 
 ## Data Transformations
 
