@@ -1,8 +1,6 @@
-# Growing Voter Engagement in Communities of Color
+## Growing Voter Engagement in Communities of Color
 
-## Carlos Portilla, JP Vasquez, Tallulah Kay, Gabriel Yllescas
-
-Carlos Portilla, JP Vasquez, Tallulah Kay, Gabriel Yllescas
+_Carlos Portilla, JP Vasquez, Tallulah Kay, Gabriel Yllescas_
 
 For this project, we are working with Amplify Latinx and BU Spark! to analyze Massachusetts voting and demographic data to suggest where they should focus their voter turnout efforts in order to get more people of color out to vote.
 
