@@ -10,7 +10,7 @@ As our team is responsible for creating only the groundwork for what will be a m
 
 ## Data Import
 
-For the scope of this project, we are starting with 3 private data sets provided by Amplify Latinx:
+For the scope of this project, we are starting with 4 data sets; the former 2 are private, provided by Amplify Latinx, and the latter 2, we found online:
 
 1. `Registered Voter Demographics`
    - Senate District
@@ -20,21 +20,24 @@ For the scope of this project, we are starting with 3 private data sets provided
    - Senate District
    - Precinct
    - Congressional District
-3. `City Council Race Results (2009-2017)`
-4. `Demographics by Towns`
+3. `City Council Race Results (2009-2017)` [source][https://www.boston.gov/sites/default/files/2017_-_11-07-17_-_city_councillor_at_large_ward_precinct_results.pdf?fbclid=IwAR0FimlNPxQ1WkOBau8nOWlXGUCU_A_gtFel71KmKQkuUC7xnEVlBjGF-6I]
 
-We are combining these data sets to analyze in which wards people are voting more, what percentage of registered voters are voting within those wards, and how many people are not registered to vote. From this, we will extrapolate where voter registration efforts are going to be effective as based on ratios formed from the amount of Registered to Non-Registered voters and Registered voters to Total Votes cast. Ultimately, our goal is to identify which elections are such that more voters showing up would change the result and provide Amplify Latinx with an interactive, embeddable heat map of Massachusetts that will illustrate this data.
+4. `Demographics by Towns` [source][http://archive.boston.com/news/local/massachusetts/graphics/03_22_11_2010_census_town_population/?fbclid=IwAR1-4mbJ6MZbR9u2sNwsebbWGTaEo3pDR3wJjjAonrZEJhm1EbQz6i0mrW0]
 
 ## Data Transformations
 
-To start, we isolated Latinx voter data by Boston Ward from `Registered Voter Demographics` (2a) and `Non-Registered Voter Demographics`  (3a) by `Precinct`, and then aggregated the precincts, by ward. Then, we generated the total vote difference by ward for the city council race from the `City Council Race Results (2009-2017)` (3). From here, we generated the various ratios mentioned earlier to find the wards with the most disproportionate amount of people who could vote but dont. 
+We are combining these data sets to produce 3 metrics: in which wards people are voting more, what percentage of registered voters are voting within those wards, and how many people are not registered to vote. From this, we will extrapolate where voter registration efforts are going to be effective as based on ratios formed from the amount of registered to non-registered voters and registered voters to total votes cast. Ultimately, our goal is to identify which elections are such that more voters showing up would change the result and provide Amplify Latinx with an interactive, embeddable heat map of Massachusetts that will illustrate this data.
 
-## Constraint Satisfaction Algorithm (Greedy Algorithmn)
-
-We used these ratios and race data to create summary statistics about our voting population. Then, we created a constraint satisfaction algorithm. The constraints used are a flip percentage, predicting how effective canvassing efforts would be, flip goal, and proportion of hispanic people in a ward (generated in the statistical analysis). This algorithm generates visits by which Amplify could flip the entire race, in the fewest number of wards. 
+To do so, we isolated Latinx voter data by Boston Ward from `Registered Voter Demographics` (2a) and `Non-Registered Voter Demographics`  (3a) by `Precinct`, and then aggregated the precincts, by ward. Then, we generated the total vote difference by ward for the city council race from the `City Council Race Results (2009-2017)` (3). From here, we generated the aforementioned ratios to find the wards with the most disproportionate amount of people who could vote but dont. 
 
 ## Statistical Analysis
 
-Finally, we used the `Google Geocoding API` to transform `Demographics by Towns` (4) into the geocoding information necessary to use in the map. When we produce the map for Amplify Latinx, the user will be able to input their confidence in how effective their outreach efforts will be (ex. a user might predict that they can flip the votes of 50% of people they reach) and a constraint for desired Latinx percentage in the communities they visit. Then, they will be provided a suggestion of wards to visit as well as the ability to hover over the map and view stats for the different wards.
+We used these ratios and race data to create summary statistics about our voting population. These summary statistics act as a data sample to guage the demographics of the voters. Using both `Registered Voter Demographics` and `Eligible Voter Demographics`, we produced several statistics comparing all products of registered and eligible, Latinx and otherwise voters. These statistics are stored as `sampling`, and then used as a constraint for choosing which wards to visit. We can choose which statistic to prioritize in our suggestions for where to focus voter turnout efforts.
+
+## Constraint Satisfaction (Greedy Algorithm)
+
+The constraints used are a flip percentage, predicting how effective canvassing efforts would be, flip goal, and proportion of hispanic people in a ward (generated in the statistical analysis). This algorithm generates visits by which Amplify could flip the entire race, in the fewest number of wards. The algorithms sorts wards by descending number of registered voters who didn't turn out. Then, for each ward, it checks if the ward satisfies the constraints, prioritizing the hispanic proportion constraint. If the ward meets the constraints, it is added to `wards_to_visit`.
 
 ## Plans For Visualization
+
+We used the `Google Geocoding API` to transform `Demographics by Towns` (4) into the geocoding information necessary to produce an interactive map for Amplify Latinx. The map will be demarcated by wards that will reveal statistical information when hovered over. The user will also be able to input their confidence in how effective their outreach efforts will be (ex. a user might predict that they can flip the votes of 50% of people they reach) and a constraint for desired Latinx percentage in the communities they visit. We will be provide a suggestion of wards to visit based on the user's constraints.
