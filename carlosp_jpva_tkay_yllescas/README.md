@@ -4,7 +4,7 @@ _by Carlos Portilla, JP Vasquez, Tallulah Kay, Gabriel Yllescas_
 
 ## Abstract
 
-For this project, we are working with Amplify Latinx and BU Spark! to analyze Massachusetts voting and demographic data to suggest where they should focus their voter turnout efforts in order to get more people of color out to vote.
+For this project, we are working with [Amplify Latinx][amplify] and [BU Spark!][spark] to analyze Massachusetts voting and demographic data to suggest where they should focus their voter turnout efforts in order to get more people of color out to vote.
 
 As our team is responsible for creating only the groundwork for what will be a much large project in the future, the scope of data analyzed will be limited to city council race results among Latinx voters within Boston Wards. However, the code shall be built with modularity in mind in order to allow for all political races within all the geo-political subdivisions within Massachusetts. 
 
@@ -21,14 +21,7 @@ For the scope of this project, we are primarily using 4 private data sets, provi
    - Precinct
    - Congressional District
 3. `City Council Race Results (2009-2017)` [source][results]
-
-  [results]: https://www.boston.gov/sites/default/files/2017_-_11-07-17_-_city_councillor_at_large_ward_precinct_results.pdf?fbclid=IwAR0FimlNPxQ1WkOBau8nOWlXGUCU_A_gtFel71KmKQkuUC7xnEVlBjGF-6I
-
 4. `Demographics by Towns` [source][dems]
-
-  [dems]: http://archive.boston.com/news/local/massachusetts/graphics/03_22_11_2010_census_town_population/?fbclid=IwAR1-4mbJ6MZbR9u2sNwsebbWGTaEo3pDR3wJjjAonrZEJhm1EbQz6i0mrW0
-
-
 
 ## Data Transformations
 
@@ -47,3 +40,8 @@ The constraints used are a flip percentage, predicting how effective canvassing 
 ## Plans For Visualization
 
 We used the `Google Geocoding API` to transform `Demographics by Towns` into the geocoding information necessary to produce an interactive map for Amplify Latinx. The map will be demarcated by wards that will reveal statistical information when hovered over. The user will also be able to input their confidence in how effective their outreach efforts will be ex. a user might predict that they can flip the votes of 50% of people they reach) and a constraint for desired Latinx percentage in the communities they visit. We will be provide a suggestion of wards to visit based on the user's constraints.
+
+[amplify]: https://amplifylatinx.co/
+[spark]: http://www.bu.edu/spark/
+[results]: https://www.boston.gov/sites/default/files/2017_-_11-07-17_-_city_councillor_at_large_ward_precinct_results.pdf?fbclid=IwAR0FimlNPxQ1WkOBau8nOWlXGUCU_A_gtFel71KmKQkuUC7xnEVlBjGF-6I
+[dems]: http://archive.boston.com/news/local/massachusetts/graphics/03_22_11_2010_census_town_population/?fbclid=IwAR1-4mbJ6MZbR9u2sNwsebbWGTaEo3pDR3wJjjAonrZEJhm1EbQz6i0mrW0
