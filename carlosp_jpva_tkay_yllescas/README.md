@@ -1,6 +1,6 @@
 # Growing Voter Engagement in Communities of Color
 
-_by Carlos Portillo, JP Vasquez, Tallulah Kay, Gabriel Yllescas_
+_by Carlos Portillo, Jean P. Vazquez, Tallulah Kay, Gabriel Yllescas_
 
 ## Abstract
 
