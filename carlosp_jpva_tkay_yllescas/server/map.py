@@ -11,25 +11,93 @@ import folium
 import os
 import csv
 import googlemaps
+import random
+import pandas as pd
+import branca.colormap as cm
 
-wards_to_visit = ["01", "19"]
-url = "http://bostonopendata-boston.opendata.arcgis.com/datasets/2bc185ec9b0b478d8c2f7e720d116863_0.geojson"
-response = urllib.request.urlopen(url).read().decode("utf-8")
+def map(wards):
+    client = dml.pymongo.MongoClient()
+    repo = client.repo
+    repo.authenticate('carlosp_jpva_tkay_yllescas', 'carlosp_jpva_tkay_yllescas')
 
-data = json.loads(response)
+    url = "https://opendata.arcgis.com/datasets/398ee443f4ac49e9a0b7facf80afc20f_8.geojson"
+    response = urllib.request.urlopen(url).read().decode("utf-8")
+    data = json.loads(response)
 
-m = folium.Map(location=[42.3601, -71.0589], zoom_start=12)
+    default = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21"]
+    wards_to_visit = ["01"]
 
-vis = os.path.join('data', 'vis.json')
+    latinx_data = repo['carlosp_jpva_tkay_yllescas.sampling'].find()
+    max = 0
+    min = 1
+    for x in latinx_data:
+        for ward in default:
+            for feature in data['features']:
+                if int(feature['properties']['WARD']) == int(ward):
+                    feature['properties']['prop'] = x['W' + ward]['H_Prop']
+                if x['W' + ward]['H_Prop'] > max:
+                    max = feature['properties']['prop']
+                if x['W' + ward]['H_Prop'] < min:
+                    min = feature['properties']['prop']
 
+    # proportion colormap
+    colormap = cm.linear.Paired_04.scale(min, max)
+    colormap.caption = "Latinx Percentage"
 
-map = {"type":"FeatureCollection","features":[]}
-for ward in wards_to_visit:
+    m = folium.Map(location=[42.3055, -71.0589], zoom_start=12)
+
+    visit = {"type":"FeatureCollection","features":[]}
+    map = {"type":"FeatureCollection","features":[]}
+    if wards_to_visit == []:
+        wards_to_visit = default
+
     for feature in data['features']:
-        if (feature["properties"]["WARD_PRECINCT"][0:2] == ward):
-            map["features"].append(feature)
-    
+        for ward in default:
+            if int(feature["properties"]["WARD"]) == int(ward):
+                for w in wards_to_visit:
+                    map["features"].append(feature)
+                    if ward == w:
+                        visit["features"].append(feature)
 
-folium.Choropleth(geo_data = map, data=None, columns=None, key_on=None, bins=6, fill_color='blue', nan_fill_color='black', fill_opacity=0.6, nan_fill_opacity=None, line_color='black', line_weight=1, line_opacity=1, name=None, legend_name='', overlay=True, control=True, show=True, topojson=None, smooth_factor=None, highlight=None).add_to(m)
+    #def color(d):
+    #    if d['WARD'] not in ward_to_visit:
+    #        return 
+    #    else:
+    #        retucolormap(d['prop'])
+    #    return colormap
 
-m.save('map.html')
+    folium.GeoJson(visit,
+                   name='Wards to Visit',
+                   style_function=lambda x: {"weight":2,
+                                             'color':'black',
+                                             'fillColor': 'red',
+                                             'fillOpacity':1},
+                   highlight_function=lambda x: {'weight':3,
+                                                 'color':'red'},
+                   smooth_factor=2.0,
+                   tooltip=folium.features.GeoJsonTooltip(fields=['WARD', 'prop'],
+                                                          aliases=['Ward', 'Latinx Proportion'],
+                                                          sticky=True,
+                                                          labels=True),
+                   show=False
+                  ).add_to(m)
+
+    folium.GeoJson(map,
+                   name='City of Boston Wards',
+                   style_function=lambda x: {"weight":2,
+                                             'color':'black',
+                                             'fillColor': colormap(x['properties']['prop']),
+                                             'fillOpacity':0.7},
+                   highlight_function=lambda x: {'weight':3,
+                                                 'color':'red'},
+                   smooth_factor=2.0,
+                   tooltip=folium.features.GeoJsonTooltip(fields=['WARD', 'prop'],
+                                                          aliases=['Ward', 'Latinx Proportion'],
+                                                          sticky=True,
+                                                          labels=True),
+                  ).add_to(m)
+
+    colormap.add_to(m)
+
+    folium.LayerControl(collapsed=False).add_to(m)
+    m.save('map.html')
