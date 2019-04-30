@@ -100,7 +100,6 @@ def get_map(wards):
     colormap.add_to(m)
 
     folium.LayerControl(collapsed=False).add_to(m)
-   #m.save('map.html')
-
-   html_string = m.get_root().render()
-   return html_string
+   # m.save('map.html')
+    html_string = m.get_root().render()
+    return html_string

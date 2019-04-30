@@ -124,7 +124,8 @@ class registered_voters_didnt_turn_out(dml.Algorithm):
        
 
             #do something if not possible?
-        return json.dumps(wards_to_visit)
+        #return json.dumps(wards_to_visit)
+        return wards_to_visit
 
 
 

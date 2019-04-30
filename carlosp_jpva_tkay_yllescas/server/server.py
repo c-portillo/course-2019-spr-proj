@@ -9,6 +9,7 @@ from flask import Flask, redirect, url_for, session, request
 from get_wards_to_visit import registered_voters_didnt_turn_out
 #from cache import closest_name
 import random
+from get_map import get_map
 
 # App config.
 DEBUG = True
@@ -26,20 +27,29 @@ app.config.from_object(__name__)
 def login():
     if request.method == 'GET':
         #default page
-        return render_template('index.html', supress='True')
+        wards = []
+        html = get_map(wards)
+        return render_template('index.html', map= html)
     if request.method == 'POST':
         #they entered params 
         #render new html page
     #The request method is POST (page is recieving data)
         flip_percent = float(request.form['flip_percent'])
         hispanic_threshhold = float(request.form['hispanic_threshold'])
-        ret = registered_voters_didnt_turn_out.execute(flip_percent,hispanic_threshhold)
+        #dictionary of wards to visit
+        wards_to_visit_dict = registered_voters_didnt_turn_out.execute(flip_percent,hispanic_threshhold)
 
 
         
         print("flip_percent: ", flip_percent)
         print("hispanic_threshhold: ", hispanic_threshhold)
-        return ret
+        wards = list(wards_to_visit_dict.keys())
+        print("wards to visit: ", wards)
+        html = get_map(wards)
+        print (html)
+
+
+        return render_template('index.html', map= html)
 
 
 
