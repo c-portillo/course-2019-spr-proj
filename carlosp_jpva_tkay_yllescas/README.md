@@ -49,7 +49,7 @@ With this project, the main problem that we sought to solve was to increase vote
 
 ![PNG Image](https://github.com/tallulahkay/course-2019-spr-proj/blob/master/carlosp_jpva_tkay_yllescas/Final%20Results/relationship.jpeg)
 
-Following this, we then began working and by using the approach and tools detailed above, created a visualization on a local Flask server as shown in figures 2 and 3.  
+Following this, we then began working and by using the approach detailed above, created a visualization on a local Flask server which, when launched, will display as:  
 
 ![websiteDef](https://github.com/tallulahkay/course-2019-spr-proj/blob/master/carlosp_jpva_tkay_yllescas/Final%20Results/website_default.jpeg)
 
