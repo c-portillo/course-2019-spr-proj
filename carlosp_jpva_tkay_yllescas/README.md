@@ -46,11 +46,11 @@ As mentioned previously, the goal of the algorithm is to generate a list of sugg
 ## Results and Visualization
 
 With this project, the main problem that we sought to solve was to increase voter turnout by targeting areas with a large Hispanic population. However, even after looking at various statistics which indicate a correlation between race and voter registration/turnout, we first sought to confirm whether this was the case within our dataset. As a result, as can be seen in below, we found this to also be the case for Wards in Boston. 
-[relationship]
+[[https://github.com/tallulahkay/course-2019-spr-proj/blob/master/carlosp_jpva_tkay_yllescas/Final%20Results/relationship.jpeg]]
 
 Following this, we then began working and by using the approach and tools detailed above, created a visualization on a local Flask server as shown in figures 2 and 3.  
-[web_map_def]
-[web_map_suggestion]
+[[https://github.com/tallulahkay/course-2019-spr-proj/blob/master/carlosp_jpva_tkay_yllescas/Final%20Results/website_default.png]]
+[[https://github.com/tallulahkay/course-2019-spr-proj/blob/master/carlosp_jpva_tkay_yllescas/Final%20Results/website_suggestion.png]]
 
 
 
@@ -60,6 +60,3 @@ Following this, we then began working and by using the approach and tools detail
 [spark]: http://www.bu.edu/spark/
 [results]: https://www.boston.gov/sites/default/files/2017_-_11-07-17_-_city_councillor_at_large_ward_precinct_results.pdf?fbclid=IwAR0FimlNPxQ1WkOBau8nOWlXGUCU_A_gtFel71KmKQkuUC7xnEVlBjGF-6I
 [dems]: http://archive.boston.com/news/local/massachusetts/graphics/03_22_11_2010_census_town_population/?fbclid=IwAR1-4mbJ6MZbR9u2sNwsebbWGTaEo3pDR3wJjjAonrZEJhm1EbQz6i0mrW0
-[relationship]: https://github.com/tallulahkay/course-2019-spr-proj/blob/master/carlosp_jpva_tkay_yllescas/Final%20Results/relationship.jpeg
-[web_map_def]: https://github.com/tallulahkay/course-2019-spr-proj/blob/master/carlosp_jpva_tkay_yllescas/Final%20Results/website_default.png
-[web_map_suggestion]: https://github.com/tallulahkay/course-2019-spr-proj/blob/master/carlosp_jpva_tkay_yllescas/Final%20Results/website_suggestion.png
