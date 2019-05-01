@@ -101,7 +101,7 @@ class city_race_diff_to_flip(dml.Algorithm):
 
         return doc
 
-city_race_diff_to_flip.execute()
+#city_race_diff_to_flip.execute()
 
 
 ## eof
