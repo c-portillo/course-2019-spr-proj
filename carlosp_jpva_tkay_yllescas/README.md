@@ -46,6 +46,7 @@ As mentioned previously, the goal of the algorithm is to generate a list of sugg
 ## Results and Visualization
 
 With this project, the main problem that we sought to solve was to increase voter turnout by targeting areas with a large Hispanic population. However, even after looking at various statistics which indicate a correlation between race and voter registration/turnout, we first sought to confirm whether this was the case within our dataset. As a result, as can be seen in below, we found this to also be the case for Wards in Boston. 
+
 ![PNG Image](https://github.com/tallulahkay/course-2019-spr-proj/blob/master/carlosp_jpva_tkay_yllescas/Final%20Results/relationship.jpeg)
 
 Following this, we then began working and by using the approach and tools detailed above, created a visualization on a local Flask server as shown in figures 2 and 3.  
