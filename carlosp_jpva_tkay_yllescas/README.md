@@ -57,7 +57,7 @@ Following this, we then began working and by using the approach and tools detail
 
 
 ### Reference
-For more information on detail mentioned above, reference the final report document within the Final Results Folder above.
+For more information on anything mentioned here, please reference the final report document within the Final Results Folder above.
 
 
 [amplify]: https://amplifylatinx.co/
