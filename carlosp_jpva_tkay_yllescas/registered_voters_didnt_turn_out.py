@@ -81,6 +81,7 @@ class registered_voters_didnt_turn_out(dml.Algorithm):
         for x in diff_to_flip:
             diff_to_flip = x['total_diff']
         print('diff_to_flip',diff_to_flip)
+
         hispanic_total = {}
         
         i = 1
