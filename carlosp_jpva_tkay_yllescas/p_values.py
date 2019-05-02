@@ -78,7 +78,6 @@ class p_values(dml.Algorithm):
             vData.append(b)
 
         raceComparisons = ["Hispanic_vs_Registration", "Black_vs_Registration", "White_vs_Registration", "Asian_vs_Registration"]
-        pVals = {x["Community"]:{} for x in demographicsByTowns}
 
         pVals = {x:{} for x in raceComparisons}
 
