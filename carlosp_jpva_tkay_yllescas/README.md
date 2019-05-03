@@ -41,16 +41,16 @@ The first set of statistics used in the visualization comprise several values ge
 The reason why we gather these values are to then use as a constraint for the algorithm in the last phase by choosing which statistic to prioritize in our suggestions for where to focus voter turnout efforts. However, given this project’s limited scope, we will not give the option to prioritize anything other than the proportion of total Hispanics. 
 
 To gauge the impact the Hispanic population has on voter registration rates throughout Massachusetts as a whole, we used data from from Demographics by Towns (2010), and voter registration data (2010) to compute 4 correlation coefficients. One for each of the following:
-	- Hispanic Population vs Overall Registration Rate, Correlation Coefficient = -0.07
-	- Black Population vs  Overall Registration Rate, Correlation Coefficient = -0.05
-	- White Population vs Overall Registration Rate, Correlation Coefficient = 0.05
-	-  Asian Population vs Overall Registration Rate, Correlation Coefficient = -0.02
+- Hispanic Population vs Overall Registration Rate, Correlation Coefficient = -0.07
+- Black Population vs  Overall Registration Rate, Correlation Coefficient = -0.05
+- White Population vs Overall Registration Rate, Correlation Coefficient = 0.05
+-  Asian Population vs Overall Registration Rate, Correlation Coefficient = -0.02
 
 We then computed the p-values for each one of them. We found the p-values for each to be as follows:
- 	- Hispanic population and Overall Registration Rate, p-value = 0.21
-	- Black Population  and Overall Registration Rate, p-value = 0.31 
-	- White Population and Overall Registration Rate, p-value = 0.31 
-	- Asian Population and Overall Registration Rate, p-value = 0.66 
+- Hispanic population and Overall Registration Rate, p-value = 0.21
+- Black Population  and Overall Registration Rate, p-value = 0.31 
+- White Population and Overall Registration Rate, p-value = 0.31 
+- Asian Population and Overall Registration Rate, p-value = 0.66 
 
 While in the scientific community a p-value is considered statistically significant generally if it is <0.1, we believe the gaps between these p-values, and the fact the Hispanic population size is negatively correlated with overall registration rates, suggests there may be merit to focusing voter engagement and registration efforts on communities with larger hispanic populations. 
 
