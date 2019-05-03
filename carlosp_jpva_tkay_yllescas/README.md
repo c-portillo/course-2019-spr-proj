@@ -11,7 +11,7 @@ The goal of this project is to create an interactive map of Massachusetts to hel
 
 ## Data Import
 
-For the scope of this project, we are using 5 data sets, two of which are public that we found through our own research, and three private data sets which were provided by Amplify Latinx:
+For the scope of this project, we are using 6 data sets, three of which are public that we found through our own research, and three private data sets which were provided by Amplify Latinx:
 
 1. [`City Council Race Results (2009-2017)`][results]
 2. [`Demographics by Towns`][dems]
@@ -24,6 +24,7 @@ For the scope of this project, we are using 5 data sets, two of which are public
    - Senate District
    - Precinct
    - Congressional District
+6. [`MA Voter Registration Data (2010)`][voterData2010]
 
 ## Data Transformations
 
@@ -35,9 +36,23 @@ The first set of statistics used in the visualization comprise several values ge
    -The proportion of the total population which are Hispanic
    -Proportion of Hispanic people which are eligible
    -Proportion of Hispanic people which are registered
-   -Average and standard deviation of Hispanic voters which are registered or eligible in each war
+   -Average and standard deviation of Hispanic voters which are registered or eligible in each ward.
    
 The reason why we gather these values are to then use as a constraint for the algorithm in the last phase by choosing which statistic to prioritize in our suggestions for where to focus voter turnout efforts. However, given this project’s limited scope, we will not give the option to prioritize anything other than the proportion of total Hispanics. 
+
+To gauge the impact the Hispanic population has on voter registration rates throughout Massachusetts as a whole, we used data from from Demographics by Towns (2010), and voter registration data (2010) to compute 4 correlation coefficients. One for each of the following:
+	- Hispanic Population vs Overall Registration Rate, Correlation Coefficient = -0.07
+	- Black Population vs  Overall Registration Rate, Correlation Coefficient = -0.05
+	- White Population vs Overall Registration Rate, Correlation Coefficient = 0.05
+	-  Asian Population vs Overall Registration Rate, Correlation Coefficient = -0.02
+
+We then computed the p-values for each one of them. We found the p-values for each to be as follows:
+ 	- Hispanic population and Overall Registration Rate, p-value = 0.21
+	- Black Population  and Overall Registration Rate, p-value = 0.31 
+	- White Population and Overall Registration Rate, p-value = 0.31 
+	- Asian Population and Overall Registration Rate, p-value = 0.66 
+
+While in the scientific community a p-value is considered statistically significant generally if it is <0.1, we believe the gaps between these p-values, and the fact the Hispanic population size is negatively correlated with overall registration rates, suggests there may be merit to focusing voter engagement and registration efforts on communities with larger hispanic populations. 
 
 ## Constraint Satisfaction and Optimization
 
@@ -65,3 +80,4 @@ For more information on anything mentioned here, please reference the final repo
 [spark]: http://www.bu.edu/spark/
 [results]: https://www.boston.gov/sites/default/files/2017_-_11-07-17_-_city_councillor_at_large_ward_precinct_results.pdf?fbclid=IwAR0FimlNPxQ1WkOBau8nOWlXGUCU_A_gtFel71KmKQkuUC7xnEVlBjGF-6I
 [dems]: http://archive.boston.com/news/local/massachusetts/graphics/03_22_11_2010_census_town_population/?fbclid=IwAR1-4mbJ6MZbR9u2sNwsebbWGTaEo3pDR3wJjjAonrZEJhm1EbQz6i0mrW0
+[voterData2010]: https://www.sec.state.ma.us/ele/ele10/enrollment_count_regdt_10132010.pdf
