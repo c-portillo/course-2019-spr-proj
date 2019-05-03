@@ -52,7 +52,7 @@ We then computed the p-values for each one of them. We found the p-values for ea
 - White Population and Overall Registration Rate, p-value = 0.31 
 - Asian Population and Overall Registration Rate, p-value = 0.66 
 
-While in the scientific community a p-value is considered statistically significant generally if it is <0.1, we believe the gaps between these p-values, and the fact the Hispanic population size is negatively correlated with overall registration rates, suggests there may be merit to focusing voter engagement and registration efforts on communities with larger hispanic populations. 
+While in the scientific community a p-value is considered statistically significant generally if it is <0.1, we believe the gaps between these p-values, and the fact the Hispanic population size is negatively correlated with overall registration rates, suggests there may be merit to focusing voter engagement efforts on communities with larger hispanic populations. 
 
 ## Constraint Satisfaction and Optimization
 
