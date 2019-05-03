@@ -33,10 +33,10 @@ Two main sets of data transformations were performed on the data obtained above.
 ## Statistical Analysis
 
 The first set of statistics used in the visualization comprise several values generated from a statistical analysis of the population data for registered and eligible voters. The values generated both for each ward and overall are: 
--The proportion of the total population which are Hispanic
--Proportion of Hispanic people which are eligible
--Proportion of Hispanic people which are registered
--Average and standard deviation of Hispanic voters which are registered or eligible in each ward.
+- The proportion of the total population which are Hispanic
+- Proportion of Hispanic people which are eligible
+- Proportion of Hispanic people which are registered
+- Average and standard deviation of Hispanic voters which are registered or eligible in each ward.
    
 The reason why we gather these values are to then use as a constraint for the algorithm in the last phase by choosing which statistic to prioritize in our suggestions for where to focus voter turnout efforts. However, given this project’s limited scope, we will not give the option to prioritize anything other than the proportion of total Hispanics. 
 
