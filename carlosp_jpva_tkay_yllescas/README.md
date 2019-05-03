@@ -40,7 +40,7 @@ The first set of statistics used in the visualization comprise several values ge
    
 The reason why we gather these values are to then use as a constraint for the algorithm in the last phase by choosing which statistic to prioritize in our suggestions for where to focus voter turnout efforts. However, given this project’s limited scope, we will not give the option to prioritize anything other than the proportion of total Hispanics. 
 
-To gauge the impact the Hispanic population has on voter registration rates throughout Massachusetts as a whole, we used data from from Demographics by Towns (2010), and voter registration data (2010) to compute 4 correlation coefficients. One for each of the following:
+To gauge the impact the Hispanic population has on voter registration rates throughout Massachusetts as a whole, we used data from Demographics by Towns (2010), and voter registration data (2010) to compute 4 correlation coefficients. One for each of the following:
 - Hispanic Population vs Overall Registration Rate, Correlation Coefficient = -0.07
 - Black Population vs  Overall Registration Rate, Correlation Coefficient = -0.05
 - White Population vs Overall Registration Rate, Correlation Coefficient = 0.05
